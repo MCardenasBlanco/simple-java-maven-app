@@ -1,15 +1,14 @@
+// Using git without checkout 
 pipeline {
-    agent any
-    stages {
-        stage('Checkout SCM') {
-            steps {
-                checkout scm
-            }
-        }
-        stage('Echo environment') {
-            steps {
-                sh 'printenv'
-            }
-        }
+  agent any
+  parameters {
+    gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+  }
+  stages {
+    stage('Example') {
+      steps {
+        git branch: "${params.BRANCH}", url: 'https://github.com/cbdchang/simple-java-maven-app.git'
+      }
     }
+  }
 }
