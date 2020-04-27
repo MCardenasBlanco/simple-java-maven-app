@@ -1,15 +1,11 @@
 // Using git without checkout 
 pipeline {
   agent any
-  parameters {
-    gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
-  }
   stages {
-    stage('Example') {
+    stage('Checkout') {
       steps {
-        git branch: "${params.BRANCH}", url: 'https://github.com/jenkinsci/git-parameter-plugin.git'
-        sh 'echo ${params.BRANCH}'
         sh 'printenv'
+        git branch: 'master', url: 'git@github.com:cbdchang/simple-java-maven-app.git'
       }
     }
   }
