@@ -19,7 +19,7 @@ pipeline {
             doGenerateSubmoduleConfigurations: false,
             gitTool: 'git-ocp',
             submoduleCfg: [],
-            userRemoteConfigs: [[url: "https://github.com/cbdchang/simple-java-maven-app.git"]]])
+            userRemoteConfigs: [[credentials: 'cbdchang-github', url: "https://github.com/cbdchang/simple-java-maven-app.git"]]])
       }
     }
   }
