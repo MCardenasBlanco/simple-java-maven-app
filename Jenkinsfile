@@ -6,6 +6,9 @@ pipeline {
     GIT_CURL_VERBOSE=1
     GIT_TRACE=1
   }
+  tools {
+    git 'git-ocp'
+  }
   stages {
     stage('Checkout') {
       steps {
@@ -16,7 +19,7 @@ pipeline {
             doGenerateSubmoduleConfigurations: false,
             gitTool: 'git-ocp',
             submoduleCfg: [],
-            userRemoteConfigs: [[credentialsId: 'cbdchang-github', url: "https://github.com/cbdchang/simple-java-maven-app.git"]]])
+            userRemoteConfigs: [[url: "https://github.com/cbdchang/simple-java-maven-app.git"]]])
       }
     }
   }
