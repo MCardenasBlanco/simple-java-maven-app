@@ -10,7 +10,13 @@ pipeline {
     stage('Checkout') {
       steps {
         sh 'printenv'
-        git branch: 'master', url: 'git@github.com:cbdchang/simple-java-maven-app.git', credentialsId: 'cbdchang-github'
+        // git branch: 'master', url: 'git@github.com:cbdchang/simple-java-maven-app.git', credentialsId: 'cbdchang-github'
+        checkout([
+            $class: 'GitSCM', branches: [[name: "*/master"]],
+            doGenerateSubmoduleConfigurations: false,
+            gitTool: 'git-ocp',
+            submoduleCfg: [],
+            userRemoteConfigs: [[credentialsId: 'cbdchang-github', url: "https://github.com/cbdchang/simple-java-maven-app.git"]]])
       }
     }
   }
