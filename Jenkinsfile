@@ -6,7 +6,13 @@ podTemplate(label: 'inplace', containers: [
 
   node('inplace') {
     stage('Build a Maven project') {
-      git 'https://github.com/cbdchang/simple-java-maven-app.git'
+      checkout([
+        $class: 'GitSCM', branches: [[name: "*/master"]],
+        doGenerateSubmoduleConfigurations: false,
+        gitTool: 'git-MDP',
+        submoduleCfg: [],
+        userRemoteConfigs: [[url: "https://github.com/cbdchang/simple-java-maven-app.git"]]
+      ])
       sh 'mvn -BskipTests clean compile'
     }
   }
