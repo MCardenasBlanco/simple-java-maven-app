@@ -6,7 +6,7 @@ podTemplate(label: 'inplace', containers: [
 
   node('inplace') {
     stage('Build a Maven project') {
-      sh 'ls -l'
+      git 'https://github.com/cbdchang/simple-java-maven-app.git'
       sh 'mvn -BskipTests clean compile'
     }
   }
