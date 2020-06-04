@@ -9,7 +9,7 @@ podTemplate(label: 'inplace', containers: [
       checkout([
         $class: 'GitSCM', branches: [[name: "*/master"]],
         doGenerateSubmoduleConfigurations: false,
-        gitTool: 'git-MDP',
+        gitTool: 'git-ocp',
         submoduleCfg: [],
         userRemoteConfigs: [[url: "https://github.com/cbdchang/simple-java-maven-app.git"]]
       ])
